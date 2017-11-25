@@ -33,7 +33,7 @@ def spinny(delta):
 
     if delta > 0:
         to_node("rotate", "clockwise")
-    else if delta < 0:
+    elif delta < 0:
         to_node("rotate", "anticlockwise")
 
 @skywriter.tap()
