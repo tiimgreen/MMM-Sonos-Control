@@ -24,7 +24,12 @@ module.exports = NodeHelper.create({
 
   skyWriterStart: function() {
     var self = this;
-    var pyShell = new PythonShell('modules/' + this.name + '/skywriter.py', { mode: 'json', args: [JSON.stringify(this.config)]});
+    var pyShell = new PythonShell('modules/' + this.name + '/skywriter.py', {
+      mode: 'json',
+      args: [JSON.stringify(this.config)],
+      pythonPath: '/usr/bin/python3'
+    });
+
     console.log('Skywriter started');
 
     pyShell.on('message', function (message) {
