@@ -1,15 +1,10 @@
 Module.register('MMM-Sonos-Control', {
   defaults: {
     sonosRoomName: 'Living Room',
-    showStoppedRoom: true,
-    showAlbumArt: true,
-    showRoomName: true,
-    animationSpeed: 1000,
     updateInterval: 5000, // every 5 seconds
     apiBase: 'http://localhost',
     apiPort: 5005,
-    apiEndpoint: 'zones',
-    exclude: []
+    apiEndpoint: 'zones'
   },
 
   current_song: {
@@ -119,9 +114,10 @@ Module.register('MMM-Sonos-Control', {
   },
 
   socketNotificationReceived: function(notification, payload) {
-    if (notification === 'SONOS_DATA') {
-      Log.info('received SONOS_DATA');
-      this.render(payload);
+    switch (notification) {
+      case 'SONOS_DATA':
+        this.render(payload);
+        break;
     }
   }
 });
