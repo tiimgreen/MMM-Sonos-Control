@@ -1,6 +1,4 @@
 import skywriter
-import signal
-import autopy
 import json
 
 some_value = 0
