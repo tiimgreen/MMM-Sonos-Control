@@ -33,9 +33,14 @@ module.exports = NodeHelper.create({
         self.sendSocketNotification('SKYWRITER_GESTURE', JSON.parse(body));
       }
 
-      if (message.hasOwnProperty('gesture')) {
+      if (message.hasOwnProperty('rotate')) {
         console.log('Rotate: ', JSON.parse(body));
         self.sendSocketNotification('SKYWRITER_ROTATE', JSON.parse(body));
+      }
+
+      if (message.hasOwnProperty('tap')) {
+        console.log('Tap: ', JSON.parse(body));
+        self.sendSocketNotification('SKYWRITER_TAP', JSON.parse(body));
       }
     });
 
