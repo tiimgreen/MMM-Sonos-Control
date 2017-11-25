@@ -1,16 +1,19 @@
 Module.register('MMM-Sonos-Control', {
   defaults: {
     primaryRoomName: 'Living Room',
-    updateInterval: 5
+    updateInterval: 5000
   },
 
   start: function() {
     Log.info('Starting module: ' + this.name);
+    this.update();
+
+    setInterval(this.update.bind(this), this.config.updateInterval);
   },
 
   getDom: function() {
     var content = getMusicPlayer();
-    return $(content)[0];
+    return $('<h1>test</h1>')[0];
   },
 
   getMusicPlayer: function() {
