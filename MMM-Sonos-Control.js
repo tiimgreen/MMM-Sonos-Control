@@ -41,6 +41,13 @@ Module.register('MMM-Sonos-Control', {
     </div>';
   },
 
+  getStyles: function() {
+    return [
+      'styles/style.css',
+      'styles/player.css'
+    ];
+  },
+
   getHeader: function() {
     return this.config.primaryRoomName + ' Sonos';
   }
