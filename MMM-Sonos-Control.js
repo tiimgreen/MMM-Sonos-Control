@@ -1,16 +1,16 @@
- Module.register('MMM-Sonos-Control', {
-	defaults: {
+Module.register('MMM-Sonos-Control', {
+  defaults: {
     sonosRoomName: 'Living Room',
-		showStoppedRoom: true,
-		showAlbumArt: true,
-		showRoomName: true,
-		animationSpeed: 1000,
-		updateInterval: 5000, // every 5 seconds
-		apiBase: 'http://localhost',
-		apiPort: 5005,
-		apiEndpoint: 'zones',
- 		exclude: []
-	},
+    showStoppedRoom: true,
+    showAlbumArt: true,
+    showRoomName: true,
+    animationSpeed: 1000,
+    updateInterval: 5000, // every 5 seconds
+    apiBase: 'http://localhost',
+    apiPort: 5005,
+    apiEndpoint: 'zones',
+    exclude: []
+  },
 
   current_song: {
     title: '',
@@ -20,23 +20,23 @@
     duration: ''
   },
 
-	start: function() {
-		Log.info('Starting module: ' + this.name);
-		this.update();
+  start: function() {
+    Log.info('Starting module: ' + this.name);
+    this.update();
 
-		// refresh every x milliseconds
-		setInterval(
-			this.update.bind(this),
-			this.config.updateInterval
+    // refresh every x milliseconds
+    setInterval(
+      this.update.bind(this),
+      this.config.updateInterval
     );
-	},
+  },
 
   update: function() {
-		this.sendSocketNotification(
-			'SONOS_UPDATE',
-			this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint
+    this.sendSocketNotification(
+      'SONOS_UPDATE',
+      this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint
     );
-	},
+  },
 
   updateSonosInfo: function(data) {
     var sonos = this.getRoomInfo(data, this.config.sonosRoomName);
@@ -61,10 +61,10 @@
     })[0];
   },
 
-	render: function(data) {
+  render: function(data) {
     this.updateSonosInfo(data);
-		this.updateDom();
-	},
+    this.updateDom();
+  },
 
   getMusicPlayer: function() {
     return '<div class="player">\
@@ -78,9 +78,7 @@
         <div class="module-content">\
           <div>\
             <div class="light small dimmed">' + this.current_song.title + '</div>\
-            <div class="bright medium light">\
-              ' + this.current_song.artist + ' - ' + this.current_song.album + '\
-            </div>\
+            <div class="bright medium light">' + this.current_song.artist + '</div>\
           </div>\
         </div>\
       </div>\
@@ -98,31 +96,32 @@
     </div>';
   },
 
-	getScripts: function() {
-		return [
-			'//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js'
-		];
-	},
+  getScripts: function() {
+    return [
+      'script.js',
+      '//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js'
+    ];
+  },
 
-	getStyles: function() {
-		return [
+  getStyles: function() {
+    return [
       'style.css',
       'player.css'
     ];
-	},
+  },
 
   getHeader: function() {
     return this.config.primaryRoomName + ' Sonos';
   },
 
-	getDom: function() {
-		return $(this.getMusicPlayer())[0];
-	},
+  getDom: function() {
+    return $(this.getMusicPlayer())[0];
+  },
 
   socketNotificationReceived: function(notification, payload) {
     if (notification === 'SONOS_DATA') {
       Log.info('received SONOS_DATA');
-			this.render(payload);
+      this.render(payload);
     }
   }
 });
