@@ -7,15 +7,15 @@ module.exports = NodeHelper.create({
   },
 
   socketNotificationReceived: function(notification, url) {
-    if (notification == 'SONOS_UPDATE') {
-      console.log(notification);
+    console.log('helper: ' + notification);
 
+    if (notification == 'SONOS_UPDATE') {
       var self = this;
 
       request(url, function(error, response, body) {
         if (error) {
           console.error('Error: ' + error);
-        } else if (response.statusCode == 200) {
+        } else if (parseInt(response.statusCode) == 200) {
           self.sendSocketNotification('SONOS_DATA', JSON.parse(body));
         }
       });
