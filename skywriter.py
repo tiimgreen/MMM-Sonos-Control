@@ -17,13 +17,13 @@ to_node("info", "ready")
 
 @skywriter.flick()
 def flick(start, finish):
-    if start == "east" && finish == "west":
+    if start == "east" and finish == "west":
         to_node("gesture", "left")
-    if start == "west" && finish == "east":
+    if start == "west" and finish == "east":
         to_node("gesture", "right")
-    if start == "north" && finish == "south":
+    if start == "north" and finish == "south":
         to_node("gesture", "down")
-    if start == "south" && finish == "north":
+    if start == "south" and finish == "north":
         to_node("gesture", "up")
 
 @skywriter.airwheel()
