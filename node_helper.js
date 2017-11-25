@@ -26,11 +26,10 @@ module.exports = NodeHelper.create({
     var self = this;
     var pyShell = new PythonShell('modules/' + this.name + '/skywriter.py', {
       mode: 'json',
-      args: [JSON.stringify(this.config)],
       pythonPath: '/usr/bin/python3'
     });
 
-    console.log('Skywriter started');
+    console.log('Skywriter starting...');
 
     pyShell.on('message', function (message) {
       if (message.hasOwnProperty('gesture')) {
@@ -51,7 +50,7 @@ module.exports = NodeHelper.create({
 
     pyShell.end(function (err) {
       if (err) throw err;
-      console.log("node_helper_[" + self.name + "] " + 'finished running...');
+      console.log('Skywriter finishing...');
     });
   }
 })
