@@ -118,6 +118,9 @@ Module.register('MMM-Sonos-Control', {
       case 'SONOS_DATA':
         this.render(payload);
         break;
+      case 'SKYWRITER_TAP':
+        console.log('TAP');
+        break;
     }
   }
 });

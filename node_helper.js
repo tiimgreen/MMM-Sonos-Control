@@ -5,7 +5,7 @@ var PythonShell = require('python-shell');
 module.exports = NodeHelper.create({
   start: function() {
     console.log('Sonos helper starting...');
-    // this.skyWriterStart();
+    this.skyWriterStart();
   },
 
   socketNotificationReceived: function(notification, url) {
@@ -24,7 +24,7 @@ module.exports = NodeHelper.create({
 
   skyWriterStart: function() {
     var self = this;
-    var pyShell = new PythonShell('modules/' + this.name + '/skywriter.py', {
+    var pyShell = new PythonShell('/home/pi/mti.py', {
       mode: 'json',
       pythonPath: '/usr/bin/python3'
     });
