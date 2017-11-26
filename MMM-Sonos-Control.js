@@ -72,8 +72,8 @@ Module.register('MMM-Sonos-Control', {
       <div class="song-info">\
         <div class="module-content">\
           <div>\
-            <div class="light small dimmed">' + this.current_song.title + '</div>\
-            <div class="bright medium light">' + this.current_song.artist + '</div>\
+            <div class="bright medium light">' + this.current_song.title + '</div>\
+            <div class="light small dimmed">' + this.current_song.artist + '</div>\
           </div>\
         </div>\
       </div>\
