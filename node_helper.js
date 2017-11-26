@@ -5,7 +5,7 @@ var PythonShell = require('python-shell');
 module.exports = NodeHelper.create({
   start: function() {
     console.log('Sonos helper starting...');
-    this.skyWriterStart();
+    // this.skyWriterStart();
   },
 
   socketNotificationReceived: function(notification, url) {
