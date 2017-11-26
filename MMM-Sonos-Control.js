@@ -106,7 +106,7 @@ Module.register('MMM-Sonos-Control', {
   },
 
   getHeader: function() {
-    return this.config.primaryRoomName + ' Sonos';
+    return this.config.sonosRoomName + ' Sonos';
   },
 
   getDom: function() {
