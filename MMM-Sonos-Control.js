@@ -93,7 +93,6 @@ Module.register('MMM-Sonos-Control', {
 
   getScripts: function() {
     return [
-      'script.js',
       '//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js'
     ];
   },
@@ -114,12 +113,10 @@ Module.register('MMM-Sonos-Control', {
   },
 
   socketNotificationReceived: function(notification, payload) {
+    console.log('MMM-Sonos-Control: ', notification);
     switch (notification) {
       case 'SONOS_DATA':
         this.render(payload);
-        break;
-      case 'SKYWRITER_TAP':
-        console.log('TAP');
         break;
     }
   }
