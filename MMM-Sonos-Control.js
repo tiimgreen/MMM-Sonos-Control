@@ -12,7 +12,8 @@ Module.register('MMM-Sonos-Control', {
     album: '',
     artist: '',
     albumArtUrl: '',
-    duration: ''
+    duration: '',
+    is_playing: false
   },
 
   start: function() {
@@ -44,6 +45,7 @@ Module.register('MMM-Sonos-Control', {
     this.current_song.artist = currentTrack.artist;
     this.current_song.albumArtUrl = currentTrack.absoluteAlbumArtUri;
     this.current_song.duration = (state.elapsedTime / currentTrack.duration) * 100;
+    this.current_song.is_playing = sonos.coordinator.state.playbackState == 'PLAYING';
   },
 
   getRoomInfo: function(data, roomName) {
@@ -82,7 +84,7 @@ Module.register('MMM-Sonos-Control', {
           <i class="fa fa-backward" aria-hidden="true"></i>\
         </div>\
         <div class="playerbtn playToggle">\
-          <i class="fa fa-play" aria-hidden="true"></i>\
+          <i class="fa fa-' + (this.current_song.is_playing ? 'pause' : 'play') + '" aria-hidden="true"></i>\
         </div>\
         <div class="playerbtn song-forward">\
           <i class="fa fa-forward" aria-hidden="true"></i>\

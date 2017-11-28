@@ -1,6 +1,5 @@
 var NodeHelper = require('node_helper');
 var request = require('request');
-var PythonShell = require('python-shell');
 var process = require('child_process');
 
 module.exports = NodeHelper.create({
