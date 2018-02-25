@@ -75,7 +75,7 @@ Module.register('MMM-Sonos-Control', {
         <div class="module-content">\
           <div>\
             <div class="bright medium light">' + this.current_song.title + '</div>\
-            <div class="light small dimmed">' + this.current_song.artist + '</div>\
+            <div class="light small dimmed">' + this.current_song.artist + ' - ' + this.current_song.album + '</div>\
           </div>\
         </div>\
       </div>\
@@ -115,7 +115,6 @@ Module.register('MMM-Sonos-Control', {
   },
 
   socketNotificationReceived: function(notification, payload) {
-    console.log('MMM-Sonos-Control: ', notification);
     switch (notification) {
       case 'SONOS_DATA':
         this.render(payload);
