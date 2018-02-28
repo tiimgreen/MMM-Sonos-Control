@@ -3,7 +3,7 @@
 }
 
 .player {
-  width: 300px;
+  width: 500px;
   padding: 20px;
   margin: 10px;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.35);
@@ -19,6 +19,7 @@
 .player .album-cover img {
   display: block;
   max-width: 100%;
+  border-radius: 20px;
 }
 .player .song-progress-bar {
   width: 100%;
