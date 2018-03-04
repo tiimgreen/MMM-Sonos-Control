@@ -3,17 +3,24 @@ var request = require('request');
 var process = require('child_process');
 var express = require('express');
 var app = express();
+var body_parser = require('body-parser');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 module.exports = NodeHelper.create({
   start: function() {
     console.log('Sonos helper starting...');
+
+    var self = this;
+
     app.post('/', function(req, res) {
-        console.log('### Sonos updated');
-        console.log(req, res);
+        console.log('Sonos change posted');
+        self.sendSocketNotification('SONOS_DATA', req.body.data);
     });
 
     app.listen(4444, function() {
-        console.log('Server listening...');
+        console.log('Webhook server listening...');
     });
   },
 

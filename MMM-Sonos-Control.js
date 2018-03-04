@@ -1,10 +1,11 @@
 Module.register('MMM-Sonos-Control', {
   defaults: {
     sonosRoomName: 'Living Room',
-    updateInterval: 5000, // every 5 seconds
+    updateInterval: 10000, // every 5 seconds
     apiBase: 'http://localhost',
     apiPort: 5005,
-    apiEndpoint: 'zones'
+    zonesEndpoint: 'zones',
+    playlistEndpoint: "playlist"
   },
 
   current_song: {
@@ -30,21 +31,28 @@ Module.register('MMM-Sonos-Control', {
   update: function() {
     this.sendSocketNotification(
       'SONOS_UPDATE',
-      this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.apiEndpoint
+      this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.zonesEndpoint
     );
   },
+
+  getCurrentPlaylist: function() {
+    this.sendSocketNotification(
+      'SONOS_UPDATE',
+      this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.playlistEndpoint
+    }
+  }
 
   updateSonosInfo: function(data) {
     var sonos = this.getRoomInfo(data, this.config.sonosRoomName);
 
     var state = sonos.coordinator.state
-    var currentTrack = state.currentTrack;
+    var current_track = state.currentTrack;
 
-    this.current_song.title = currentTrack.title;
-    this.current_song.album = currentTrack.album;
-    this.current_song.artist = currentTrack.artist;
-    this.current_song.albumArtUrl = currentTrack.absoluteAlbumArtUri;
-    this.current_song.duration = (state.elapsedTime / currentTrack.duration) * 100;
+    this.current_song.title = current_track.title;
+    this.current_song.album = current_track.album;
+    this.current_song.artist = current_track.artist;
+    this.current_song.albumArtUrl = current_track.absoluteAlbumArtUri;
+    this.current_song.duration = (state.elapsedTime / current_track.duration) * 100;
     this.current_song.is_playing = sonos.coordinator.state.playbackState == 'PLAYING';
   },
 
