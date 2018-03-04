@@ -54,6 +54,10 @@ Module.register('MMM-Sonos-Control', {
     this.current_song.albumArtUrl = current_track.absoluteAlbumArtUri;
     this.current_song.duration = (state.elapsedTime / current_track.duration) * 100;
     this.current_song.is_playing = sonos.coordinator.state.playbackState == 'PLAYING';
+
+    if (this.current_song.duration > 100) {
+      this.current_song.duration = 100;
+    }
   },
 
   getRoomInfo: function(data, roomName) {
