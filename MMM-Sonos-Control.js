@@ -40,7 +40,7 @@ Module.register('MMM-Sonos-Control', {
       'SONOS_UPDATE',
       this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.playlistEndpoint
     );
-  }
+  },
 
   updateSonosInfo: function(data) {
     var sonos = this.getRoomInfo(data, this.config.sonosRoomName);
