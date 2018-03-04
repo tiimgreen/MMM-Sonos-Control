@@ -39,7 +39,7 @@ Module.register('MMM-Sonos-Control', {
     this.sendSocketNotification(
       'SONOS_UPDATE',
       this.config.apiBase + ":" + this.config.apiPort + "/" + this.config.playlistEndpoint
-    }
+    );
   }
 
   updateSonosInfo: function(data) {
