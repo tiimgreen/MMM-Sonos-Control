@@ -17,6 +17,8 @@ Module.register('MMM-Sonos-Control', {
     is_playing: false
   },
 
+
+
   start: function() {
     Log.info('Starting module: ' + this.name);
     this.update();
@@ -47,6 +49,7 @@ Module.register('MMM-Sonos-Control', {
 
     var state = sonos.coordinator.state
     var current_track = state.currentTrack;
+	console.log(sonos)
 
     this.current_song.title = current_track.title;
     this.current_song.album = current_track.album;
@@ -79,6 +82,7 @@ Module.register('MMM-Sonos-Control', {
     return '<div class="player">\
       <div class="album-cover">\
         <img src="' + this.current_song.albumArtUrl + '" />\
+		<div class="vinyl" style="background-image: url(\'https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png\'), url(\'' + this.current_song.albumArtUrl + '\');"></div>\
       </div>\
       <div class="song-progress-bar">\
         <div class="inner-bar" style="width: ' + this.current_song.duration + '%"></div>\
@@ -89,17 +93,6 @@ Module.register('MMM-Sonos-Control', {
             <div class="bright medium light">' + this.current_song.title + '</div>\
             <div class="light small dimmed">' + this.current_song.artist + ' - ' + this.current_song.album + '</div>\
           </div>\
-        </div>\
-      </div>\
-      <div class="player-buttons">\
-        <div class="playerbtn song-back">\
-          <i class="fa fa-backward" aria-hidden="true"></i>\
-        </div>\
-        <div class="playerbtn playToggle">\
-          <i class="fa fa-' + (this.current_song.is_playing ? 'pause' : 'play') + '" aria-hidden="true"></i>\
-        </div>\
-        <div class="playerbtn song-forward">\
-          <i class="fa fa-forward" aria-hidden="true"></i>\
         </div>\
       </div>\
     </div>';
