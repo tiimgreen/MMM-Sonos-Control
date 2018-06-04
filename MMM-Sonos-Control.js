@@ -17,8 +17,6 @@ Module.register('MMM-Sonos-Control', {
     is_playing: false
   },
 
-
-
   start: function() {
     Log.info('Starting module: ' + this.name);
     this.update();
@@ -49,7 +47,6 @@ Module.register('MMM-Sonos-Control', {
 
     var state = sonos.coordinator.state
     var current_track = state.currentTrack;
-	console.log(sonos)
 
     this.current_song.title = current_track.title;
     this.current_song.album = current_track.album;
@@ -79,10 +76,11 @@ Module.register('MMM-Sonos-Control', {
   },
 
   getMusicPlayer: function() {
+    var animated_class = this.config.animatedVinyl ? 'animated' : '';
     return '<div class="player">\
       <div class="album-cover">\
         <img src="' + this.current_song.albumArtUrl + '" />\
-		<div class="vinyl" style="background-image: url(\'https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png\'), url(\'' + this.current_song.albumArtUrl + '\');"></div>\
+		<div class="vinyl ' + animated_class + '" style="background-image: url(\'https://s3-us-west-2.amazonaws.com/s.cdpn.io/83141/vinyl.png\'), url(\'' + this.current_song.albumArtUrl + '\');"></div>\
       </div>\
       <div class="song-progress-bar">\
         <div class="inner-bar" style="width: ' + this.current_song.duration + '%"></div>\

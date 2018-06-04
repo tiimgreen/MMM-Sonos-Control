@@ -28,10 +28,6 @@
 	z-index: 10;
 }
 .player .album-cover .vinyl {
-    animation-name: spin;
-    animation-duration: 2000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 	background-position: center, center;
 	background-size: cover, 40% auto;
 	background-repeat: no-repeat;
@@ -45,6 +41,14 @@
 	z-index: 5;
 	left: 52%;
 }
+
+.player .album-cover .vinyl.spin {
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
 .player .song-progress-bar {
   width: 315px;
   height: 3px;
